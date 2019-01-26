@@ -1,0 +1,60 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+        google() // Gradle 4.0+
+        maven { url "https://maven.google.com" } // Gradle < 4.0
+    }
+    dependencies {
+        classpath 'com.google.cloud.tools:endpoints-framework-gradle-plugin:1.0.2'
+        classpath 'com.google.cloud.tools:appengine-gradle-plugin:1.3.3'
+        classpath "com.android.tools.build:gradle:3.0.1"
+        classpath 'com.google.gms:google-services:3.1.0'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.13.0'
+        classpath 'com.noveogroup.android:check:1.2.3'
+        // V2: Include this dependency when using Endpoints Framework v2
+        classpath 'com.google.guava:guava:19.0'
+    }
+}
+task runTestsInLocalServer {
+    dependsOn = ['runLocalServer', 'runAndroidTests', 'haltLocalServer']
+}
+
+task runLocalServer {
+    dependsOn ':backend:appengineRun'
+//    project(":backend").afterEvaluate { backend ->
+//        backend.extensions.appengine.daemon = true
+//    }
+    doLast {
+        println "Server started..."
+    }
+}
+
+task runAndroidTests {
+    shouldRunAfter 'runLocalServer'
+    dependsOn ':app:connectedCheck'
+    doLast {
+        println "Testing finished..."
+    }
+}
+
+task haltLocalServer {
+    shouldRunAfter 'runAndroidTests'
+    dependsOn ':gce:appengineStop'
+    doLast {
+        println "Server stopped..."
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        google()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
