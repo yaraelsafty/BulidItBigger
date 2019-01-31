@@ -3,7 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context="eng.android.moustafa.builditbigger.MainActivity">
+    tools:context="eng.android.moustafa.builditbigger.MainActivity"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://schemas.android.com/apk/res-auto
+http://schemas.android.com/apk/res-auto ">
     <!-- TODO: Update blank fragment layout -->
     <ProgressBar
         android:id="@+id/progressbar"

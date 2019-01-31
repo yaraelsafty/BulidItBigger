@@ -10,10 +10,14 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.example.andjoklib.JokyActivity;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
+import com.udacity.gradle.builditbigger.backend.myApi.MyApi;
+import com.udacity.gradle.builditbigger.backend.myApi.model.MyBean;
 
 import java.io.IOException;
+
 
 /**
  */

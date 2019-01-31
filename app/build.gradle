@@ -1,37 +1,57 @@
-//apply plugin: 'com.android.application'
-//apply plugin: 'com.google.cloud.tools.endpoints-framework-client'
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.cloud.tools.endpoints-framework-client'
 
-buildscript {
-    repositories {
-        jcenter()
+android {
+    compileSdkVersion 26
+    flavorDimensions "default"
+    defaultConfig {
+        applicationId "com.udacity.gradle.builditbigger"
+        minSdkVersion 16
+        targetSdkVersion 26
+        multiDexEnabled true //Add this
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-    dependencies {
-        classpath 'com.google.cloud.tools:endpoints-framework-gradle-plugin:1.0.2'
-        classpath 'com.google.cloud.tools:appengine-gradle-plugin:1.3.3'
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+    productFlavors {
+        free {
+            minSdkVersion 16
+            applicationId 'eng.android.moustafa.builditbigger'
+        }
+        paid {
+            minSdkVersion 16
+            applicationId 'com.udacity.gradle.builditbigger'
+        }
+    }
+
 }
-
-repositories {
-    jcenter()
-}
-
-apply plugin: 'java'
-apply plugin: 'war'
-apply plugin: 'com.google.cloud.tools.appengine'
-apply plugin: 'com.google.cloud.tools.endpoints-framework-server'
-
-sourceCompatibility = JavaVersion.VERSION_1_7
-targetCompatibility = JavaVersion.VERSION_1_7
 
 dependencies {
-    implementation 'com.google.endpoints:endpoints-framework:2.0.9'
-    implementation 'javax.inject:javax.inject:1'
 
-    implementation 'javax.servlet:servlet-api:2.5'
-    implementation 'com.google.api-client:google-api-client:1.23.0'
-    implementation 'com.google.http-client:google-http-client-android:1.23.0'
-    compile project(":jokylib")
+    implementation project(':andjoklib')
+    implementation 'com.google.firebase:firebase-messaging:11.8.0'
+    endpointsServer project(path: ':backend', configuration: 'endpoints')
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support:design:26.1.0'
+    testCompile 'junit:junit:4.12'
+    compile 'com.google.http-client:google-http-client-android:1.23.0'
+    compile 'com.google.api-client:google-api-client:1.23.0'
+    compile 'com.google.code.findbugs:jsr305:2.0.1'
+    implementation 'com.google.android.gms:play-services:11.8.0'
+    freeCompile 'com.google.firebase:firebase-ads:11.8.0'
 
-    compile project(path: ':andjoklib')
-    compile project(path: ':andjoklib')
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    compile project(path: ':backend')
 }
+apply plugin: 'com.google.gms.google-services'

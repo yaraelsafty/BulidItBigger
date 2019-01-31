@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 
-
 public class JokyActivity extends AppCompatActivity {
 
     public static final String INTENT_JOKE ="joky" ;
