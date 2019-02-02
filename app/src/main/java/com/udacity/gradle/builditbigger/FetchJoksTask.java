@@ -1,5 +1,4 @@
 package com.udacity.gradle.builditbigger;
-
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +16,6 @@ import com.udacity.gradle.builditbigger.backend.myApi.MyApi;
 import com.udacity.gradle.builditbigger.backend.myApi.model.MyBean;
 
 import java.io.IOException;
-
 
 /**
  */
