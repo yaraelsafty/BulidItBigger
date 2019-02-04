@@ -46,7 +46,8 @@ public class FetchJoksTask extends AsyncTask<Pair<Context, String>, Void, String
 
             return myJoke;
         } catch (IOException e) {
-            return e.getMessage();
+
+            return null;
         }
 
     }

@@ -21,6 +21,7 @@ public class JokeFetchTest extends AndroidTestCase {
             Log.d(LOG_TAG, "Retrieved a non-empty string successfully: " + result);
         } catch (Exception e) {
             e.printStackTrace();
+            Log.d(LOG_TAG,e.getMessage());
         }
         assertNotNull(result);
     }
