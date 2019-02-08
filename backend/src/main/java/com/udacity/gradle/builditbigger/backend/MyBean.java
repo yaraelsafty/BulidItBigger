@@ -12,6 +12,6 @@ public class MyBean {
     }
 
     public String getJoke() {
-        return myJoks.getRandomJoke();
+        return MyJoks.getRandomJoke();
     }
 }

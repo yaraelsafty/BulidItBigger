@@ -40,6 +40,7 @@ public class FetchJoksTask extends AsyncTask<Pair<Context, String>, Void, String
 
             jokyApi = builder.build();
         }
+        
         try {
             String myJoke = jokyApi.putJoke(new MyBean()).execute().getJoke();
             Log.i("Joke :) ", myJoke);
